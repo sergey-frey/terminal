@@ -1,0 +1,19 @@
+.cursor {
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+  animation-delay: 500ms;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: var(--color-gray-500);
+  }
+}
