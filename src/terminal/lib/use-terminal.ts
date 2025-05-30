@@ -30,6 +30,8 @@ export const useTerminal = ({ fsRoot, onSubmit }: UseTerminalOptions) => {
     setTerminalContent,
     listDirectory,
     changeDirectory,
+    currentPath,
+    fsRoot,
   });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +58,7 @@ export const useTerminal = ({ fsRoot, onSubmit }: UseTerminalOptions) => {
       },
     ]);
     setCurrentCommand("");
+    setCursorPosition(0);
     setHistoryPointer(commandsHistory.length + 1);
 
     commandsReducer(currentCommand.trim())();

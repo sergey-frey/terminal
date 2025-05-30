@@ -1,4 +1,5 @@
 import type { FSDirectoryNode, FSNode } from "../types/virtual-file-system";
+import { TERMINAL_MESSAGES } from "./terminal-messages";
 
 export const getFSNode = (fsRoot: FSDirectoryNode, path: string[]) => {
   const absolutePath = [...path];
@@ -15,7 +16,7 @@ export const getFSNode = (fsRoot: FSDirectoryNode, path: string[]) => {
     );
 
     if (!node) {
-      throw new Error("Path does not exist");
+      throw new Error(TERMINAL_MESSAGES.INVALID_PATH);
     }
 
     currentNode = node;

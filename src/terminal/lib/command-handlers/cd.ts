@@ -1,4 +1,6 @@
+import { joinPath } from "@/shared/utils";
 import type { TerminalContent } from "../../types/terminal-content";
+import { TERMINAL_MESSAGES } from "../terminal-messages";
 
 export const getCdCommandOutput = (
   command: string,
@@ -7,17 +9,27 @@ export const getCdCommandOutput = (
   const args = command.split(" ").slice(1);
 
   if (args.length === 0) {
-    return [{ type: "text-command-error", error: "No arguments provided" }];
+    return [
+      {
+        type: "text-command-error",
+        error: TERMINAL_MESSAGES.NO_ARGUMENTS_PROVIDED,
+      },
+    ];
   }
 
   try {
-    changeDirectory(args.join("/"));
+    changeDirectory(joinPath(...args));
   } catch (error) {
     if (error instanceof Error) {
       return [{ type: "text-command-error", error: error.message }];
     }
 
-    return [{ type: "text-command-error", error: "Unknown error" }];
+    return [
+      {
+        type: "text-command-error",
+        error: TERMINAL_MESSAGES.UNKNOWN_ERROR,
+      },
+    ];
   }
 
   return [];

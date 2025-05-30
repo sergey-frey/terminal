@@ -24,4 +24,9 @@ export const SUPPORTED_COMMANDS = [
     aliases: ["cd"],
     description: "Change the current directory",
   },
+  {
+    command: "start",
+    aliases: ["start"],
+    description: "Start a file",
+  },
 ];
