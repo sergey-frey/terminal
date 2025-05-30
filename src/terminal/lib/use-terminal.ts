@@ -70,7 +70,10 @@ export const useTerminal = ({ fsRoot, onSubmit }: UseTerminalOptions) => {
       const previousHistoryPointer = Math.max(historyPointer - 1, 0);
 
       setHistoryPointer(previousHistoryPointer);
-      setCurrentCommand(commandsHistory[previousHistoryPointer]);
+
+      if (previousHistoryPointer < commandsHistory.length) {
+        setCurrentCommand(commandsHistory[previousHistoryPointer]);
+      }
     }
 
     if (e.key === "ArrowDown") {
