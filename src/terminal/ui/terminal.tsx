@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { cn } from "tailwind-cn";
 import { useTerminal } from "../lib/use-terminal";
 import type { FSDirectoryNode } from "../types/virtual-file-system";
@@ -8,11 +8,18 @@ import "../styles/cursor.css";
 
 type TerminalProps = {
   fsRoot: FSDirectoryNode;
+  focusOnMount?: boolean;
 };
 
-export const Terminal = ({ fsRoot }: TerminalProps) => {
+export const Terminal = ({ fsRoot, focusOnMount = true }: TerminalProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (focusOnMount) {
+      inputRef.current?.focus();
+    }
+  }, [focusOnMount]);
 
   const {
     currentCommand,

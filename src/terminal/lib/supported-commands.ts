@@ -19,4 +19,9 @@ export const SUPPORTED_COMMANDS = [
     aliases: ["ls"],
     description: "List the contents of the current directory",
   },
+  {
+    command: "cd",
+    aliases: ["cd"],
+    description: "Change the current directory",
+  },
 ];
