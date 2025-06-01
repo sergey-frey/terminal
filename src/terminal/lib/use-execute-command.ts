@@ -38,11 +38,11 @@ export const useExecuteCommand = ({
       return handleClearCommand;
     }
 
-    if (/^echo .*$/.test(command)) {
+    if (/^echo([ ])?/.test(command)) {
       return handleCommand(getEchoCommandOutput(command));
     }
 
-    if (/^start .*$/.test(command)) {
+    if (/^start([ ])?/.test(command)) {
       return handleCommand(
         getStartCommandOutput({ command, fsRoot, currentPath }),
       );

@@ -24,10 +24,12 @@ export const useTerminal = ({ fsRoot, onSubmit }: UseTerminalOptions) => {
   const [cachedCurrentCommand, setCachedCurrentCommand] = useState("");
   const [terminalContent, setTerminalContent] = useState<TerminalContent[]>([]);
 
-  const { currentPath, listDirectory, changeDirectory } =
+  const { currentPath, currentNode, listDirectory, changeDirectory } =
     useVirtualFileSystem(fsRoot);
 
   const { handleAutocomplete } = useAutocomplete({
+    fsRoot,
+    currentPath,
     currentCommand,
     setCurrentCommand,
   });

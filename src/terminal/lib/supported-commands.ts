@@ -1,4 +1,6 @@
-export const SUPPORTED_COMMANDS = [
+import type { SupportedCommand } from "../types/supported-commands";
+
+export const SUPPORTED_COMMANDS: SupportedCommand[] = [
   {
     command: "clear",
     aliases: ["clear", "cls"],
