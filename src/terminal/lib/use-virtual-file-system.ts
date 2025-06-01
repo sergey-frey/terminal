@@ -5,6 +5,7 @@ import { getFSNode } from "./virtual-file-system";
 
 export const useVirtualFileSystem = (fsRoot: FSDirectoryNode) => {
   const [currentPath, setCurrentPath] = useState<string[]>([]);
+  const [currentNode, setCurrentNode] = useState<FSDirectoryNode>(fsRoot);
 
   const changeDirectory = (relativePath: string) => {
     const relativePathParts = getPathParts(relativePath);
@@ -18,23 +19,20 @@ export const useVirtualFileSystem = (fsRoot: FSDirectoryNode) => {
     }
 
     setCurrentPath(newPath);
+    setCurrentNode(currentNode);
   };
 
   const listDirectory = () => {
-    const currentNode = getFSNode(fsRoot, currentPath);
-
-    if (!currentNode) {
-      throw new Error("Invalid path");
-    }
-
-    if (currentNode.type === "file") {
-      throw new Error("Invalid path");
-    }
-
     return currentNode.children.map((child) => {
       return child.name;
     });
   };
 
-  return { fs: fsRoot, currentPath, changeDirectory, listDirectory };
+  return {
+    fs: fsRoot,
+    currentPath,
+    currentNode,
+    changeDirectory,
+    listDirectory,
+  };
 };
