@@ -17,8 +17,6 @@ export const Command = ({
   const needToShowEndCursor = command.length === cursorPosition && isCurrent;
   const isRoot = currentPath.length === 0;
 
-  console.log(needToShowEndCursor, cursorPosition, isCurrent, command);
-
   return (
     <>
       <span>

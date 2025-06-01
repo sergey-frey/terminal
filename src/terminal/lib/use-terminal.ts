@@ -7,6 +7,7 @@ import {
 } from "react";
 import type { TerminalContent } from "../types/terminal-content";
 import type { FSDirectoryNode } from "../types/virtual-file-system";
+import { useAutocomplete } from "./use-autocomplete";
 import { useExecuteCommand } from "./use-execute-command";
 import { useVirtualFileSystem } from "./use-virtual-file-system";
 
@@ -25,6 +26,11 @@ export const useTerminal = ({ fsRoot, onSubmit }: UseTerminalOptions) => {
 
   const { currentPath, listDirectory, changeDirectory } =
     useVirtualFileSystem(fsRoot);
+
+  const { handleAutocomplete } = useAutocomplete({
+    currentCommand,
+    setCurrentCommand,
+  });
 
   const { commandsReducer } = useExecuteCommand({
     setTerminalContent,
@@ -67,6 +73,11 @@ export const useTerminal = ({ fsRoot, onSubmit }: UseTerminalOptions) => {
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      handleAutocomplete();
+    }
+
     if (e.key === "ArrowUp") {
       e.preventDefault();
 

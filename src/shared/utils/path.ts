@@ -1,5 +1,8 @@
 export const joinPath = (...paths: string[]) => {
-  return paths.join("/").replace(/\/\//g, "/");
+  return paths
+    .filter((part) => Boolean(part))
+    .join("/")
+    .replace(/\/\//g, "/");
 };
 
 export const getPathParts = (path: string) => {

@@ -56,7 +56,7 @@ export const useExecuteCommand = ({
       return handleCommand(getLsCommandOutput(listDirectory));
     }
 
-    if (/^cd .*$/.test(command)) {
+    if (/^cd([ ])?/.test(command)) {
       return handleCommand(getCdCommandOutput(command, changeDirectory));
     }
 
